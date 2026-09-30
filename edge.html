@@ -3,37 +3,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditional value of edge AI</title>
-    <meta name="description" content="When is edge faster than cloud, and where do those conditions show up in the federal AI inventories.">
+    <title>Public AI, nearby or far away</title>
+    <meta name="description" content="Federal agencies publish lists of the AI they say they are using. When is it faster to compute next to the work, and do those cases get used?">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="robots" content="all">
     <meta content="en_US" property="og:locale">
     <meta content="website" property="og:type">
     <meta content="https://adaneshi.github.io/edge.html" property="og:url">
-    <meta content="Conditional value of edge AI" property="og:title">
-    <meta content="A hardware crossover, and what the federal inventories can say about it." property="og:description">
+    <meta content="Public AI, nearby or far away" property="og:title">
+    <meta content="When a public system should run next to the work, and what the federal lists can say about that." property="og:description">
 
     <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
     <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
     <link href="assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
     <script src="assets/scripts/navbar.js"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            "HTML-CSS": {
-              scale: 95,
-              fonts: ["Gyre-Pagella"],
-              imageFont: null,
-              undefinedFamily: "'Arial Unicode MS', cmbright"
-            },
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                processEscapes: true
-              }
-          });
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -41,11 +25,11 @@
         <div class="blog-title no-cover">
             <div class="blog-intro">
                 <div>
-                    <h1 class="title">Conditional value of edge AI</h1>
+                    <h1 class="title">Public AI, nearby or far away</h1>
                     <p class="author">Ashkaan Daneshi</p>
                     <p class="author" style="padding-top: 0px;">Columbia University</p>
                     <p class="abstract">
-                        When is an edge system faster than a cloud system, and where do those conditions show up in what U.S. federal agencies filed?
+                        Agencies now publish lists of the AI they say they are using. I ask when the work should be computed next to where it happens, and whether the cases that read like field work are the ones that get used.
                     </p>
                     <div class="info">
                         <div>
@@ -55,106 +39,83 @@
                     </div>
                 </div>
                 <div class="info">
-                    <p>SSRN 7141719</p>
+                    <p>The public circle</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container blog main first" id="blog-main">
-        <h1>The latency condition</h1>
+        <h1>Where this sits</h1>
         <p class="text">
-            Let $\rho \in (0,1)$ be utilization, $\mu$ the service rate in requests per second, and $L$ the network delay in milliseconds.
-            The response time in milliseconds is
-        </p>
-        <p class="text" style="text-align: center;">
-            $$T(\mu,\rho,L) = \frac{1000}{\mu(1-\rho)} + L.$$
+            On <a href="index.html">the map</a>, this paper is the public circle. Firms make most of the goods. Government buys, regulates, and runs services. This paper uses the public lists. Payments, identity, and the grid sit in the middle of the map, further along than these lists reach.
         </p>
         <p class="text">
-            The first term is the mean sojourn in an M/M/1 queue, converted from seconds to milliseconds.
-            At $\rho \ge 1$ the sojourn is undefined.
-        </p>
-        <p class="text">
-            The base parameters in the draft are a cloud service at $\mu = 33$ requests per second and $L = 75$ ms, from the MLPerf Inference v3.0 note, and an edge device at $\mu = 20$ requests per second and $L = 10$ ms, from the Jetson AGX Xavier note.
-            The crossover $\rho^\ast$ is the smallest root of $T_{\mathrm{edge}}(\rho) - T_{\mathrm{cloud}}(\rho) = 0$.
-            At those parameters the root sits near $0.70$.
-            Edge is the faster curve only when utilization is below that root.
-            The figures on this page are the ones already drawn for the working paper.
-        </p>
-    </div>
-
-    <div class="container blog main gray">
-        <img src="assets/figures/venn.png" alt="Three-sector map with the federal inventory inside the public sector.">
-        <p class="caption">
-            The inventory sits in the public sector. The hardware an edge system runs on is physical infrastructure at the site, in the overlap with private production. Digital public infrastructure in the OECD sense is the centre region, and this paper does not measure it.
-        </p>
-    </div>
-
-    <div class="container blog main gray">
-        <img src="assets/figures/queue_schematic.png" alt="A router splitting arrivals between an edge server and a cloud server.">
-        <p class="caption">
-            A share of arrivals goes to a slower server on a short wire. The rest crosses a longer wire to a faster server.
-        </p>
-    </div>
-
-    <div class="container blog extra-large gray">
-        <img src="assets/figures/fig_response.png" alt="Response time against utilization, against arrival rate, and at the 95th percentile.">
-        <p class="caption">
-            Mean and tail response times at the base hardware. The edge and cloud curves cross at a common utilization, and again at a common arrival rate. At the 95th percentile that second crossing sits near zero.
+            Security shows up here as a kind of production the government has to steer: policing, borders, benefits, and the agencies that file those cases. The question is whether that steering lines up with a practical choice about where the computer sits.
         </p>
     </div>
 
     <div class="container blog main">
-        <h1>What a filing can say</h1>
+        <h1>A short wire or a fast machine</h1>
         <p class="text">
-            The Office of Management and Budget has published three public AI inventories, for 2023, 2024, and 2025.
-            None of them records a service rate, a latency, or a utilization.
-            They record a name, a description, and a stage.
-            The stage is the stage the agency wrote down. It is not an observed deployment, and a larger list is not, by itself, a higher arrival rate.
+            Picture two ways to answer a request. One is a smaller machine next to the camera, the clerk, or the vehicle. The wire is short, so the answer starts coming back at once, but the machine itself is slow, and a queue forms quickly once it is busy. The other is a large machine in a distant hall. It works through requests faster, but every request spends time on the wire.
         </p>
         <p class="text">
-            The inventories enter the latency model only as weights: the share of rows whose descriptions use the operational language the screen treats as edge-suited, such as field work, real-time constraints, weak connectivity, or local processing.
-            That share scales the gap between the cloud time and the edge time.
-            The gap is a gain only while $\rho < \rho^\ast$.
-        </p>
-        <p class="text">
-            The public draft is the July 2026 working paper, <a href="https://doi.org/10.2139/ssrn.7141719">doi:10.2139/ssrn.7141719</a>.
-            The three-year extension uses the same hardware model. The 2025 release does not move $\rho^\ast$.
+            While the nearby machine is idle, the short wire wins. Once it is busy most of the time, requests wait, and the distant machine is quicker even after the trip. On the benchmark hardware in the paper, the two are even when the nearby machine is busy about seventy percent of the time. If you care about the slow replies rather than the average reply, the distant machine is ahead almost from the start. A nearby box helps the typical request. It does not help the request that arrives when everyone else is already waiting.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/timeline.png" alt="Time coverage of the inventories and the disaster, vulnerability, and warning series.">
+        <img src="assets/figures/queue_schematic.png" alt="Requests split between a nearby machine and a distant one.">
         <p class="caption">
-            What each file actually covers. The three inventory releases are the dots at the right. Hatched bars are dates reconstructed from a later filing, so they include only use cases that were still in that file.
+            Some requests stay nearby, on a short wire and a slower machine. The rest travel to a faster machine.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/ladder.png" alt="Stage transitions from 2024 to 2025, including names that do not link.">
+        <img src="assets/figures/fig_response.png" alt="How long a request waits, nearby and far away.">
         <p class="caption">
-            Where a 2024 name sits in 2025. The dashed arrows are names that do not appear in the next file.
+            How long a request waits. In the left panel the machines are equally busy, and they meet near seventy percent. In the middle panel they face the same flow of work, and the nearby machine falls behind sooner because that flow crowds it. The right panel is the slow replies. There the distant machine wins early.
+        </p>
+    </div>
+
+    <div class="container blog main">
+        <h1>What the lists record</h1>
+        <p class="text">
+            The Office of Management and Budget has put out three public lists, for 2023, 2024, and 2025. A row is a form an agency filled in: a name, a short description, and a stage such as planned, pilot, or in use. Nothing on the form records how busy a machine is, how long a wire is, or whether anyone watched the system run. A longer list is a larger stack of forms.
+        </p>
+        <p class="text">
+            I read the descriptions for signs that the work itself wants a nearby machine. Field kit. A dead or thin connection. A need for an answer right now. Computing on the device rather than in a hall. Few rows hit more than one of those. The share is a few percent in each year, a bit higher in 2023 than later.
+        </p>
+        <p class="text">
+            Security agencies, including those that handle policing, borders, and veterans' benefits, file far more of the cases marked as touching rights or safety. In the 2024 list that gap is large: about half of their cases, against a few percent everywhere else. Their descriptions are not especially full of field work or urgent timing. The security mission and the practical case for a nearby machine are different patterns in the same forms.
+        </p>
+    </div>
+
+    <div class="container blog extra-large gray">
+        <img src="assets/figures/ladder.png" alt="Where 2024 cases sat a year later.">
+        <p class="caption">
+            Follow a name from 2024 into 2025. The dashed arrows are names that do not appear again. The step from planned or pilot into use is a thin one.
         </p>
     </div>
 
     <div class="container blog main gray">
-        <img src="assets/figures/linkage.png" alt="Bounds on the share of not-yet-in-use names that reach use.">
+        <img src="assets/figures/linkage.png" alt="How many not-yet-used cases are in use a year later, and how many names vanish.">
         <p class="caption">
-            Of the names not in use in 2024, 141 linked names are in use in 2025. The 473 unlinked names could move that share anywhere from 0.128 to 0.559.
+            Among 2024 cases that were not yet in use, 141 that I can match are in use in 2025. Another 473 names vanish. If all of those vanished names were in use, the share would be a bit over half. If none of them were, it would be about one in eight.
         </p>
     </div>
 
-    <div class="container blog extra-large gray">
-        <img src="assets/figures/fig_history.png" alt="Time to implementation by topic, and the edge-screen share by onset year.">
-        <p class="caption">
-            Dates recorded in the 2024 file, which include only use cases still in that file. Internal-capacity cases reach implementation sooner than security-adjacent ones. The share that meets the edge screen stays low across onset years.
+    <div class="container blog main">
+        <h1>What follows a year later</h1>
+        <p class="text">
+            Of the 2024 cases I can still find in 2025, the ones whose descriptions sounded like nearby, time-critical work are rarely the ones in use. Nineteen of the matched cases that were not yet in use met that description. One of the nineteen is in use a year later. Among the other matched cases, about one in five is in use. The writeup and the later stage do not move together.
         </p>
-    </div>
-
-    <div class="container blog extra-large gray">
-        <img src="assets/figures/fig_forest.png" alt="Odds ratios for high impact and for the edge screen, by onset cohort.">
-        <p class="caption">
-            Security agencies and high-impact filings move together in every onset cohort. Security agencies and the edge screen do not.
+        <p class="text">
+            From 2023 to 2024 the lists are even harder to join. Of 709 names that were not already retired, 472 do not show up again.
+        </p>
+        <p class="text">
+            The public draft is <a href="https://doi.org/10.2139/ssrn.7141719">SSRN 7141719</a>. Adding the 2025 list lengthens the record of what agencies wrote down. It does not change the hardware comparison above, because the lists never contained the speed of a machine or the length of a wire.
         </p>
     </div>
 
