@@ -3,15 +3,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public AI, nearby or far away</title>
-    <meta name="description" content="Federal agencies publish lists of the AI they say they are using. When is it faster to compute next to the work, and do those cases get used?">
+    <title>Conditional Value of Edge AI for U.S. Federal Agencies</title>
+    <meta name="description" content="A summary of the thesis on when federal AI systems should run at the site of use, and what the federal AI inventories record about such systems.">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="robots" content="all">
     <meta content="en_US" property="og:locale">
     <meta content="website" property="og:type">
     <meta content="https://adaneshi.github.io/edge.html" property="og:url">
-    <meta content="Public AI, nearby or far away" property="og:title">
-    <meta content="When a public system should run next to the work, and what the federal lists can say about that." property="og:description">
+    <meta content="Conditional Value of Edge AI for U.S. Federal Agencies" property="og:title">
+    <meta content="A summary of the thesis on when federal AI systems should run at the site of use, and what the federal AI inventories record about such systems." property="og:description">
 
     <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
     <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
@@ -25,11 +25,11 @@
         <div class="blog-title no-cover">
             <div class="blog-intro">
                 <div>
-                    <h1 class="title">Public AI, nearby or far away</h1>
+                    <h1 class="title">Conditional Value of Edge AI for U.S. Federal Agencies</h1>
                     <p class="author">Ashkaan Daneshi</p>
                     <p class="author" style="padding-top: 0px;">Columbia University</p>
                     <p class="abstract">
-                        Since 2023 the Office of Management and Budget has published the lists federal agencies file of the AI systems they say they are using. I use those lists to work out when the computation should sit next to the work, and whether the filings that describe field conditions are the ones later marked in use.
+                        Federal agencies publish annual inventories of the AI systems they use. Each system can run on a small computer at the site of use, on a remote cloud service, or on both. I ask when the nearby computer answers requests faster than the remote one, and how often the inventories describe systems for which that question arises.
                     </p>
                     <div class="info">
                         <div>
@@ -39,83 +39,74 @@
                     </div>
                 </div>
                 <div class="info">
-                    <p>The public circle</p>
+                    <p>Columbia thesis, 2026</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container blog main first" id="blog-main">
-        <h1>Where this sits</h1>
+        <h1>The Question</h1>
         <p class="text">
-            I place this paper in the public circle of the <a href="index.html">diagram on the home page</a>. Firms still do most of the making of goods, and government buys from them, regulates them, and operates services of its own. The only evidence in the paper is the lists those agencies file. Payments, identity systems, and the power grid, which require private capital and public authority and public trust at the same time, lie further along than these lists can reach.
-        </p>
-        <p class="text">
-            Security, in this paper, is a form of public production the government has to direct, covering policing, borders, the administration of benefits, and the agencies that file those cases. What I then look for is whether that direction coincides with a practical choice about where the computer sits.
+            Since 2023 the Office of Management and Budget has published inventories in which federal agencies list the AI systems they use or plan to use. A camera at a border crossing, a tool used by a benefits clerk, or a system on a vehicle can send each request to a remote data center, or it can answer the request on a smaller computer at the site of use. The thesis asks when the nearby computer is the faster choice, and then whether the inventories describe many systems for which the choice matters.
         </p>
     </div>
 
     <div class="container blog main">
-        <h1>A short wire or a fast machine</h1>
+        <h1>A Queueing Model</h1>
         <p class="text">
-            A request can be answered in two ways. A smaller machine can sit next to the camera, the clerk, or the vehicle, in which case the wire is short and the reply begins to come back at once, though the machine is slow and a queue builds as soon as it is busy. A larger machine in a distant hall works through requests faster, and every request pays for the time spent on the wire.
+            The nearby computer avoids the time a request spends on the network, but it is slower than a cloud server, so requests wait in a queue as soon as it is busy. I model each site as a queue and use published hardware values for the speed of each computer and the delay of the network. When the two sites are compared at the same share of busy time, they respond equally fast when each is busy about 70 percent of the time.
         </p>
         <p class="text">
-            When the nearby machine is idle, the short wire is the faster arrangement. Once that machine is busy most of the time, requests wait in its queue, and the distant machine is quicker even after the trip. On the benchmark hardware used in the paper, the two response times are equal when the nearby machine is busy about seventy percent of the time. If the quantity of interest is the slow replies, rather than the average reply, the distant machine is ahead from a much lower load: the nearby machine shortens the typical request, while a request that arrives into a queue that has already formed still waits.
+            The more relevant comparison gives both sites the same flow of requests. Since the nearby computer is slower, it becomes busy sooner, and it loses its advantage once it is busy about 55 percent of the time. For the slowest requests, measured by the 95th percentile of response time, the cloud is faster at all but the lightest loads, and the nearby computer also falls behind when requests arrive in surges.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/queue_schematic.png" alt="Requests split between a nearby machine and a distant one.">
+        <img src="assets/figures/queue_schematic.png" alt="Requests divided between a nearby computer and a remote cloud server.">
         <p class="caption">
-            Some requests stay nearby, on a short wire and a slower machine. The rest travel to a faster machine.
+            Requests are answered either by a nearby computer, with a short network delay and a slower processor, or by a remote cloud server, with a longer network delay and a faster processor.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/fig_response.png" alt="How long a request waits, nearby and far away.">
+        <img src="assets/figures/fig_response.png" alt="Average and slow response times at the nearby and remote sites.">
         <p class="caption">
-            Waiting time for a request. In the left panel the two machines are equally busy, and their waiting times meet near seventy percent. In the middle panel they face the same flow of work, so the nearby machine falls behind sooner, because that flow crowds it. The right panel is the slow replies, and there the distant machine is ahead from early on.
+            Response times at the base hardware values. (a) Average response time against the share of time each server is busy, where the curves cross near 70 percent. (b) Average response time when both sites receive the same requests, with a split between the two sites shown dotted. (c) The 95th percentile of response time, where the cloud is faster from very low loads.
         </p>
     </div>
 
     <div class="container blog main">
-        <h1>What the lists record</h1>
+        <h1>What the Inventories Record</h1>
         <p class="text">
-            The Office of Management and Budget has released three of these lists, covering 2023, 2024, and 2025. Each row is a form an agency filled in, with a name, a short description, and a stage such as planned, pilot, or in use. The form does not record how busy a machine is, how long the wire is, or whether anyone observed the system in operation, so a longer list is a larger stack of forms.
+            The three public inventories cover 2023, 2024, and 2025, and the start dates they record reach back to 2016. Each row gives the name of a use case, a short description, and its stage, such as planned, pilot, or in use. The inventories do not record how busy a computer is or how long the network delay is, so the choice of site cannot be read from them directly. I therefore screen the descriptions for the conditions associated with local processing, namely field equipment, poor connectivity, a need for an immediate answer, and processing on the device. Between two and four percent of filings meet the screen in each year, with no detectable change over time.
         </p>
         <p class="text">
-            I score the descriptions for language that would make a nearby machine the relevant arrangement: equipment used in the field, a connection that is dead or thin, a requirement that the answer come back at once, and computation carried out on the device rather than in a remote hall. Few rows contain more than one of those. The share is a few percent in each year, and it is a little higher in 2023 than in the later lists.
-        </p>
-        <p class="text">
-            Agencies that handle policing, borders, defense, and veterans' benefits file a much larger share of the cases marked as touching rights or safety. In the 2024 list that share is about half of their cases, against a few percent among the other agencies. Those same descriptions seldom mention field equipment or a requirement for an immediate answer, so the security classification of a filing and the practical case for computing nearby appear as separate patterns in the forms.
+            Use cases marked as affecting rights or safety are concentrated in security agencies, which handle policing, borders, defense, and veterans' benefits. In 2024 about half of their filings carry that label under a broad coding, against about three percent at other agencies. In 2024 and 2025, however, security agencies describe the conditions of local processing about as often as other agencies do.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/ladder.png" alt="Where 2024 cases sat a year later.">
+        <img src="assets/figures/ladder.png" alt="Movements of use cases between stages from 2024 to 2025.">
         <p class="caption">
-            Follow a name from 2024 into 2025. The dashed arrows are names that do not appear again. The step from planned or pilot into use is a thin one.
+            Movements of use cases between stages from the 2024 inventory to the 2025 inventory. Each number is the share of use cases in the stage of origin, and the dashed arrows lead to names that do not appear in the later inventory.
         </p>
     </div>
 
     <div class="container blog main gray">
-        <img src="assets/figures/linkage.png" alt="How many not-yet-used cases are in use a year later, and how many names vanish.">
+        <img src="assets/figures/linkage.png" alt="Use cases not in use in 2024, by what is recorded in 2025.">
         <p class="caption">
-            Among 2024 cases that were not yet in use, 141 that I can match are in use in 2025. Another 473 names vanish. If all of those vanished names were in use, the share would be a bit over half. If none of them were, it would be about one in eight.
+            Use cases not in use in 2024. Of those that can be matched in 2025, 141 are in use and 485 are not, and 473 cannot be matched. The share that reached use lies between 0.128, if no unmatched case reached use, and 0.559, if every unmatched case did.
         </p>
     </div>
 
     <div class="container blog main">
-        <h1>What follows a year later</h1>
+        <h1>From One Inventory to the Next</h1>
         <p class="text">
-            Among the 2024 cases I can still find in 2025, the descriptions that read as nearby and time-critical work are rarely the cases marked in use. Nineteen of the matched cases that were not yet in use met that description, and one of those nineteen is in use a year later, against about one in five of the other matched cases. The wording of the filing and the stage recorded a year later move separately.
+            Of the 626 use cases that were not in use in 2024 and can be matched in 2025, 141 were in use a year later. Nineteen of the 626 meet the screen for local processing, and one of these nineteen was in use in 2025, against about one in four among the other matched use cases. The descriptions that point to local processing are therefore not the ones that move into use, although nineteen cases are too few for a precise comparison.
         </p>
         <p class="text">
-            Joining 2023 to 2024 is harder. Of 709 names that were not already retired, 472 do not appear again.
-        </p>
-        <p class="text">
-            The public draft is <a href="https://doi.org/10.2139/ssrn.7141719">SSRN 7141719</a>. The 2025 list lengthens the record of what agencies wrote down. The comparison of the two machines comes from the benchmark hardware, which the lists do not contain, and the additional year leaves that comparison where it was.
+            The working paper is available as <a href="https://doi.org/10.2139/ssrn.7141719">SSRN Working Paper 7141719</a>.
         </p>
     </div>
 
