@@ -4,14 +4,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditional Value of Edge AI for U.S. Federal Agencies</title>
-    <meta name="description" content="A summary of the thesis on when federal AI systems should run at the site of use, and what the federal AI inventories record about such systems.">
+    <meta name="description" content="A summary of the thesis on when federal AI systems should run at the edge, and what the federal AI inventories record about such systems.">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="robots" content="all">
     <meta content="en_US" property="og:locale">
     <meta content="website" property="og:type">
     <meta content="https://adaneshi.github.io/edge.html" property="og:url">
     <meta content="Conditional Value of Edge AI for U.S. Federal Agencies" property="og:title">
-    <meta content="A summary of the thesis on when federal AI systems should run at the site of use, and what the federal AI inventories record about such systems." property="og:description">
+    <meta content="A summary of the thesis on when federal AI systems should run at the edge, and what the federal AI inventories record about such systems." property="og:description">
 
     <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
     <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
@@ -29,7 +29,7 @@
                     <p class="author">Ashkaan Daneshi</p>
                     <p class="author" style="padding-top: 0px;">Columbia University</p>
                     <p class="abstract">
-                        Federal agencies publish annual inventories of the AI systems they use. Each system can run on a small computer at the site of use, on a remote cloud service, or on both. I ask when the nearby computer answers requests faster than the remote one, and how often the inventories describe systems for which that question arises.
+                        Federal agencies publish annual inventories of the AI systems they use. Each system can run at the edge, at a remote site, or on both.
                     </p>
                     <div class="info">
                         <div>
@@ -48,36 +48,36 @@
     <div class="container blog main first" id="blog-main">
         <h1>The Question</h1>
         <p class="text">
-            Since 2023 the Office of Management and Budget has published inventories in which federal agencies list the AI systems they use or plan to use. A camera at a border crossing, a tool used by a benefits clerk, or a system on a vehicle can send each request to a remote data center, or it can answer the request on a smaller computer at the site of use. The thesis asks when the nearby computer is the faster choice, and then whether the inventories describe many systems for which the choice matters.
+            Since 2023 the Office of Management and Budget has published inventories in which federal agencies list the AI systems they use or plan to use. A camera at a border crossing, a tool used by a benefits clerk, or a system on a vehicle can send each request to a remote data center, or it can answer the request at the edge. Here, I ask when edge AI may have a useful advantage over remote AI, and then whether the inventories describe many systems for which the choice matters.
         </p>
     </div>
 
     <div class="container blog main">
         <h1>A Queueing Model</h1>
         <p class="text">
-            The nearby computer avoids the time a request spends on the network, but it is slower than a cloud server, so requests wait in a queue as soon as it is busy. I model each site as a queue and use published hardware values for the speed of each computer and the delay of the network. When the two sites are compared at the same share of busy time, they respond equally fast when each is busy about 70 percent of the time.
+            The edge avoids the time a request spends on the network, but it is slower than a remote server, so requests wait in a queue as soon as it is busy. I model each site as a queue and use published hardware values for the speed of each computer and the delay of the network. When the two sites are compared at the same share of busy time, they respond equally fast when each is busy about 70 percent of the time.
         </p>
         <p class="text">
-            The more relevant comparison gives both sites the same flow of requests. Since the nearby computer is slower, it becomes busy sooner, and it loses its advantage once it is busy about 55 percent of the time. For the slowest requests, measured by the 95th percentile of response time, the cloud is faster at all but the lightest loads, and the nearby computer also falls behind when requests arrive in surges.
+            The more relevant comparison gives both sites the same flow of requests. Since the edge is slower, it becomes busy sooner, and it loses its advantage once it is busy about 55 percent of the time. For the slowest requests, measured by the 95th percentile of response time, the remote site is faster at all but the lightest loads, and the edge also falls behind when requests arrive in surges.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/queue_schematic.png" alt="Requests divided between a nearby computer and a remote cloud server.">
+        <img src="assets/figures/queue_schematic.png" alt="Requests divided between an edge computer and a remote server.">
         <p class="caption">
-            Requests are answered either by a nearby computer, with a short network delay and a slower processor, or by a remote cloud server, with a longer network delay and a faster processor.
+            Requests are answered either at the edge, with a short network delay and a slower processor, or at the remote site, with a longer network delay and a faster processor.
         </p>
     </div>
 
     <div class="container blog extra-large gray">
-        <img src="assets/figures/fig_response.png" alt="Average and slow response times at the nearby and remote sites.">
+        <img src="assets/figures/fig_response.png" alt="Average and slow response times at the edge and remote sites.">
         <p class="caption">
-            Response times at the base hardware values. (a) Average response time against the share of time each server is busy, where the curves cross near 70 percent. (b) Average response time when both sites receive the same requests, with a split between the two sites shown dotted. (c) The 95th percentile of response time, where the cloud is faster from very low loads.
+            Response times at the base hardware values. (a) Average response time against the share of time each server is busy, where the curves cross near 70 percent. (b) Average response time when both sites receive the same requests, with a split between the two sites shown dotted. (c) The 95th percentile of response time, where the remote site is faster from very low loads.
         </p>
     </div>
 
     <div class="container blog main">
-        <h1>What the Inventories Record</h1>
+        <h1>The Inventories</h1>
         <p class="text">
             The three public inventories cover 2023, 2024, and 2025, and the start dates they record reach back to 2016. Each row gives the name of a use case, a short description, and its stage, such as planned, pilot, or in use. The inventories do not record how busy a computer is or how long the network delay is, so the choice of site cannot be read from them directly. I therefore screen the descriptions for the conditions associated with local processing, namely field equipment, poor connectivity, a need for an immediate answer, and processing on the device. Between two and four percent of filings meet the screen in each year, with no detectable change over time.
         </p>
